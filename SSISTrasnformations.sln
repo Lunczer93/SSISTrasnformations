@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32407.337
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SSISTrasnformations", "SSISTrasnformations.dtproj", "{7C3CBD6C-5F28-4DC3-ABAF-305E2AF08C2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C3CBD6C-5F28-4DC3-ABAF-305E2AF08C2F}.Development|Default.ActiveCfg = Development
+		{7C3CBD6C-5F28-4DC3-ABAF-305E2AF08C2F}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC926783-A892-41C1-B272-71BFCAE65EFA}
+	EndGlobalSection
+EndGlobal
