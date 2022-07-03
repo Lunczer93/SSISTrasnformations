@@ -1,0 +1,1164 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/13/2022 7:10:10 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LUCAS"
+  DTS:CreatorName="Lucas\Lukasz"
+  DTS:DTSID="{09401A47-39F5-43B9-B101-50AF94F8F78E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.180"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{3EFA4E7F-7218-4960-AE03-C81D84CE287E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LUCAS\SQLEXPRESS.AdventureWorksLT_2012]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E0A84D4A-9994-4C30-827C-82C695F7CB36}"
+      DTS:ObjectName="LUCAS\SQLEXPRESS.AdventureWorksLT_2012">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LUCAS\SQLEXPRESS;Initial Catalog=AdventureWorksLT_2012;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DEALING WITH NULL by Condition Expression"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{57FAB171-6965-49E6-9C45-A599222F28D6}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DEALING WITH NULL by Condition Expression">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{459B9C07-D98C-4FE2-9217-C17E8D08256D}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Weight]"
+                          cachedDataType="numeric"
+                          cachedName="Weight"
+                          cachedPrecision="8"
+                          cachedScale="2"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Weight]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[WeightNULL]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[WeightNULL]"
+                          name="WeightNULL"
+                          precision="8"
+                          scale="2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[REPLACENULL](#{Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Weight]},0)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">REPLACENULL(Weight,0)</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [ProductID], [Name],[Weight], [Color] FROM [AdventureWorksLT_2012].[SalesLT].[Product]</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LUCAS\SQLEXPRESS.AdventureWorksLT_2012]"
+                      connectionManagerRefId="Package.ConnectionManagers[LUCAS\SQLEXPRESS.AdventureWorksLT_2012]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductID]"
+                          name="ProductID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="50"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Weight]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Weight]"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Weight]"
+                          name="Weight"
+                          precision="8"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Color]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Color]"
+                          length="15"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Color]"
+                          name="Color"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                          dataType="i4"
+                          name="ProductID" />
+                        <externalMetadataColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="50"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Weight]"
+                          dataType="numeric"
+                          name="Weight"
+                          precision="8"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Color]"
+                          dataType="wstr"
+                          length="15"
+                          name="Color" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                          dataType="i4"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                          name="ProductID" />
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Weight]"
+                          dataType="numeric"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Weight]"
+                          name="Weight"
+                          precision="8"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Color]"
+                          dataType="wstr"
+                          length="15"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Color]"
+                          name="Color" />
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All"
+                  componentClassID="Microsoft.UnionAll"
+                  contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+                  name="Union All"
+                  version="1">
+                  <inputs>
+                    <input
+                      refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Inputs[Union All Input 1]"
+                      name="Union All Input 1">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[ProductID]"
+                          cachedDataType="i4"
+                          cachedName="ProductID"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductID]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[ProductID]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Name"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Name]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Weight]"
+                          cachedDataType="numeric"
+                          cachedName="Weight"
+                          cachedPrecision="8"
+                          cachedScale="2"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Weight]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Weight]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Color]"
+                          cachedDataType="wstr"
+                          cachedLength="15"
+                          cachedName="Color"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Color]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Color]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[WeightNULL]"
+                          cachedDataType="numeric"
+                          cachedName="WeightNULL"
+                          cachedPrecision="8"
+                          cachedScale="2"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[WeightNULL]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Derived Column 1]}</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Inputs[Union All Input 2]"
+                      dangling="true"
+                      hasSideEffects="true"
+                      name="Union All Input 2">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1]"
+                      name="Union All Output 1">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[ProductID]"
+                          dataType="i4"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[ProductID]"
+                          name="ProductID" />
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Name]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Weight]"
+                          dataType="numeric"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Weight]"
+                          name="Weight"
+                          precision="8"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Color]"
+                          dataType="wstr"
+                          length="15"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Color]"
+                          name="Color" />
+                        <outputColumn
+                          refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Derived Column 1]"
+                          dataType="numeric"
+                          lineageId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Derived Column 1]"
+                          name="Derived Column 1"
+                          precision="8"
+                          scale="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task.Paths[Derived Column Output]"
+                  endId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All.Inputs[Union All Input 1]"
+                  name="Derived Column Output"
+                  startId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task.Paths[OLE DB Source Output]"
+                  endId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{3FE962BF-7F5A-4B92-B789-2CE45E882733}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Dealing with NULL by ISNULL() and Condition EXPRESSION">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{23E3BC15-4CA2-4C49-BA3A-01C1E10FEE79}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Color]"
+                          cachedDataType="wstr"
+                          cachedLength="15"
+                          cachedName="Color"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Color]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ColorNULL]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="15"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ColorNULL]"
+                          name="ColorNULL"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[ISNULL](#{Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Color]}) ? "Unknown" : #{Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Color]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">ISNULL(Color) ? "Unknown" : Color</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DatE]"
+                          dataType="date"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DatE]"
+                          name="DatE"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[System::ContainerStartTime]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[System::ContainerStartTime]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [ProductID], [Name],[Weight], [Color] FROM [AdventureWorksLT_2012].[SalesLT].[Product]</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LUCAS\SQLEXPRESS.AdventureWorksLT_2012]"
+                      connectionManagerRefId="Package.ConnectionManagers[LUCAS\SQLEXPRESS.AdventureWorksLT_2012]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductID]"
+                          name="ProductID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="50"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Weight]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Weight]"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Weight]"
+                          name="Weight"
+                          precision="8"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Color]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Color]"
+                          length="15"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Color]"
+                          name="Color"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                          dataType="i4"
+                          name="ProductID" />
+                        <externalMetadataColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="50"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Weight]"
+                          dataType="numeric"
+                          name="Weight"
+                          precision="8"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Color]"
+                          dataType="wstr"
+                          length="15"
+                          name="Color" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                          dataType="i4"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                          name="ProductID" />
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Weight]"
+                          dataType="numeric"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Weight]"
+                          name="Weight"
+                          precision="8"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Color]"
+                          dataType="wstr"
+                          length="15"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Color]"
+                          name="Color" />
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All"
+                  componentClassID="Microsoft.UnionAll"
+                  contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+                  name="Union All"
+                  version="1">
+                  <inputs>
+                    <input
+                      refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Inputs[Union All Input 1]"
+                      name="Union All Input 1">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[ProductID]"
+                          cachedDataType="i4"
+                          cachedName="ProductID"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductID]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[ProductID]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Name"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Name]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Weight]"
+                          cachedDataType="numeric"
+                          cachedName="Weight"
+                          cachedPrecision="8"
+                          cachedScale="2"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Weight]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Weight]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[Color]"
+                          cachedDataType="wstr"
+                          cachedLength="15"
+                          cachedName="Color"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Color]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Color]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[ColorNULL]"
+                          cachedDataType="wstr"
+                          cachedLength="15"
+                          cachedName="ColorNULL"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ColorNULL]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[ColorNULL]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Inputs[Union All Input 1].Columns[DatE]"
+                          cachedDataType="date"
+                          cachedName="DatE"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[DatE]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[DatE]}</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Inputs[Union All Input 2]"
+                      dangling="true"
+                      hasSideEffects="true"
+                      name="Union All Input 2">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1]"
+                      name="Union All Output 1">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[ProductID]"
+                          dataType="i4"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[ProductID]"
+                          name="ProductID" />
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Name]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Weight]"
+                          dataType="numeric"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Weight]"
+                          name="Weight"
+                          precision="8"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Color]"
+                          dataType="wstr"
+                          length="15"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[Color]"
+                          name="Color" />
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[ColorNULL]"
+                          dataType="wstr"
+                          length="15"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[ColorNULL]"
+                          name="ColorNULL" />
+                        <outputColumn
+                          refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[DatE]"
+                          dataType="date"
+                          lineageId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[DatE]"
+                          name="DatE" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task.Paths[Derived Column Output]"
+                  endId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All.Inputs[Union All Input 1]"
+                  name="Derived Column Output"
+                  startId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task.Paths[OLE DB Source Output]"
+                  endId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task"
+          TopLeft="90,33" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="384,136"
+          Size="384,179"
+          Id="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION"
+          TopLeft="46,42" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\DEALING WITH NULL by Condition Expression\Data Flow Task"
+          TopLeft="149,27" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="431,156"
+          Size="431,199"
+          Id="Package\DEALING WITH NULL by Condition Expression"
+          TopLeft="469,44" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source"
+          TopLeft="245,140" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Derived Column"
+          TopLeft="333,263" />
+        <EdgeLayout
+          Id="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="320,182">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="90,81"
+              Start="0,0"
+              End="90,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.5"
+                    Point2="0,40.5"
+                    Point3="4,40.5" />
+                  <mssgle:LineSegment
+                    End="86,40.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="86,40.5"
+                    Point2="90,40.5"
+                    Point3="90,44.5" />
+                  <mssgle:LineSegment
+                    End="90,73.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\Union All"
+          TopLeft="437,354" />
+        <EdgeLayout
+          Id="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="410,305">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87.5,49"
+              Start="0,0"
+              End="87.5,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="4,24.5" />
+                  <mssgle:LineSegment
+                    End="83.5,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="83.5,24.5"
+                    Point2="87.5,24.5"
+                    Point3="87.5,28.5" />
+                  <mssgle:LineSegment
+                    End="87.5,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="35.75,29.5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dealing with NULL by ISNULL() and Condition EXPRESSION\Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DEALING WITH NULL by Condition Expression\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source"
+          TopLeft="255,103" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Derived Column"
+          TopLeft="257,217" />
+        <EdgeLayout
+          Id="Package\DEALING WITH NULL by Condition Expression\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="332,145">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,72"
+              Start="0,0"
+              End="0,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="121,42"
+          Id="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\Union All"
+          TopLeft="256,336" />
+        <EdgeLayout
+          Id="Package\DEALING WITH NULL by Condition Expression\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="334,259">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-17.5,77"
+              Start="0,0"
+              End="-17.5,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.5"
+                    Point2="0,38.5"
+                    Point3="-4,38.5" />
+                  <mssgle:LineSegment
+                    End="-13.5,38.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13.5,38.5"
+                    Point2="-17.5,38.5"
+                    Point3="-17.5,42.5" />
+                  <mssgle:LineSegment
+                    End="-17.5,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-16.75,43.5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DEALING WITH NULL by Condition Expression\Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
